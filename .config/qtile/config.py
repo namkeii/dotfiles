@@ -315,6 +315,8 @@ screens = [
             22,
             border_width=[0, 0, 1, 0],  # Draw top and bottom borders
         ),
+        #wallpaper = "~/Downloads/two.png",
+        #wallpaper_mode = "fill",
     ),
 ]
 
