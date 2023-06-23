@@ -163,11 +163,16 @@ for i in groups:
 layouts = [
     layout.TreeTab(
         border_width = 5,
-        fontsize = 17,
+        fontsize = 18,
         panel_width = 200,
-        section_fontsize = 18,
+        section_fontsize = 24,
+        section_left = 54,
         sections = ['iNsTaNcE'],
+        bg_color = "070C02",
         place_right = True,
+        padding_left = 0,
+        level_shift = 19,
+        vspace = 0,
     ),
     layout.Columns(
         border_focus = "d3d3d3",
@@ -190,7 +195,7 @@ layouts = [
 
 widget_defaults = dict(
     font="sans",
-    fontsize=15,
+    fontsize=18,
     padding=3,
 )
 extension_defaults = widget_defaults.copy()
@@ -227,7 +232,6 @@ screens = [
                     },
                     name_transform=lambda name: name.upper(),
                 ),
-                widget.Systray(),
                 widget.Spacer(
                     background = "444444",
                 ),
@@ -317,6 +321,19 @@ screens = [
         ),
         #wallpaper = "~/Downloads/two.png",
         #wallpaper_mode = "fill",
+    ),
+    Screen(
+        top=bar.Bar(
+            [
+                widget.CurrentLayoutIcon(
+                    background = "333333",
+                    foreground = "FFFFFF",
+                    padding = 2,
+                ),
+            ],
+            22,
+            border_width=[0, 0, 1, 0],  # Draw top and bottom borders
+        ),
     ),
 ]
 
