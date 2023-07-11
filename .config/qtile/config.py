@@ -164,9 +164,9 @@ layouts = [
     layout.TreeTab(
         border_width = 5,
         fontsize = 18,
-        panel_width = 200,
+        panel_width = 150,
         section_fontsize = 24,
-        section_left = 54,
+        section_left = 00,
         sections = ['iNsTaNcE'],
         bg_color = "070C02",
         place_right = True,
@@ -196,7 +196,7 @@ layouts = [
 widget_defaults = dict(
     font="sans",
     fontsize=18,
-    padding=3,
+    padding=9,
 )
 extension_defaults = widget_defaults.copy()
 
@@ -239,7 +239,6 @@ screens = [
                 widget.Pomodoro(
                     background = "d0d0d0",
                     foreground = "000000",
-                    padding = 7,
                     color_active = "0000ff",
                     color_break = "000000",
                     color_inactive = "000000",
@@ -254,25 +253,21 @@ screens = [
                 widget.Clock(
                     background = "333333",
                     foreground = "FFFFFF",
-                    padding = 9,
                     format = "%H:%M  %a %Y-%m-%d",
                 ),
                 widget.Net(
                     background = "d0d0d0",
                     foreground = "000000",
-                    padding = 2,
                     fmt = "nEt: {}",
                     format = '{down}↓↑{up}',
                 ),
                 widget.CPU(
                     background = "333333",
                     foreground = "FFFFFF",
-                    padding = 9,
                 ),
                 widget.Memory(
                     background = "d0d0d0",
                     foreground = "000000",
-                    padding = 9,
                     measure_mem = 'G',
                     fmt = "mEmoRY: {}",
                     format = "{MemUsed:.0f}{mm}",
@@ -280,7 +275,6 @@ screens = [
                 widget.Wlan(
                     background = "333333",
                     foreground = "FFFFFF",
-                    padding = 9,
                     fmt = "wIfI: {}",
                     format = "{essid}",
                     interface = "wlo1",
@@ -289,7 +283,6 @@ screens = [
                 widget.PulseVolume(
                     background = "d0d0d0",
                     foreground = "000000",
-                    padding = 9,
                     fmt = "pUlSE: {}",
                 ),
                 widget.Backlight(
@@ -297,7 +290,6 @@ screens = [
                     change_command = "brightnessctl set {}%",
                     background = "333333",
                     foreground = "FFFFFF",
-                    padding = 9,
                     fmt = "bRiGhTnEsS: {}",
                     step = 10,
                     max_chars = 4,
@@ -305,7 +297,6 @@ screens = [
                 widget.Battery(
                     background = "d0d0d0",
                     foreground = "000000",
-                    padding = 9,
                     charge_char = "C",
                     discharge_char = "D",
                     format = "{percent:2.0%} {char}",
@@ -321,19 +312,6 @@ screens = [
         ),
         #wallpaper = "~/Downloads/two.png",
         #wallpaper_mode = "fill",
-    ),
-    Screen(
-        top=bar.Bar(
-            [
-                widget.CurrentLayoutIcon(
-                    background = "333333",
-                    foreground = "FFFFFF",
-                    padding = 2,
-                ),
-            ],
-            22,
-            border_width=[0, 0, 1, 0],  # Draw top and bottom borders
-        ),
     ),
 ]
 
