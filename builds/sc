@@ -1,0 +1,6 @@
+-s = resolves and installs dependencies
+-i installs the package after buidl
+-r remove build time dependencies
+-c clean up temporary build files after the build
+
+git clean -dfx - delete all files that are not tracked

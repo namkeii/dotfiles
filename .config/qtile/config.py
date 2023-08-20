@@ -24,7 +24,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from libqtile import bar, layout, widget
+import os
+import subprocess
+from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.log_utils import logger
@@ -67,6 +69,13 @@ def delSection(
             qtile.cmd_spawn(cc)
     mb = qtile.widgets_map[widget]
     mb.start_input(prompt, f, complete)
+
+
+#autostart hook
+@hook.subscribe.startup_once
+def autostart():
+    home = os.path.expanduser('~/.config/qtile/autostart.sh')
+    subprocess.Popen([home])
 
 
 keys = [
@@ -125,6 +134,7 @@ keys = [
 
 
     Key([mod, "control"], "f", lazy.window.toggle_fullscreen(), desc = "test"),
+    Key([mod], "tab", lazy.spawn('brave'), desc="open brave browser"),
 
     Key([mod], "p", lazy.screen.next_group(), desc="Move to the right group"),
     Key([mod], "o", lazy.screen.prev_group(), desc="Move to the left group"),
@@ -161,8 +171,16 @@ for i in groups:
     )
 
 layouts = [
+    layout.Columns(
+        border_focus = "d3d3d3",
+        border_focus_stack = "8a9a5b",
+        border_normal = "000000",
+        border_normal_stack = "000000",
+        border_width = 4,
+        border_on_single = True,
+    ),
     layout.TreeTab(
-        border_width = 5,
+        border_width = 4,
         fontsize = 18,
         panel_width = 150,
         section_fontsize = 24,
@@ -174,30 +192,24 @@ layouts = [
         level_shift = 19,
         vspace = 0,
     ),
-    layout.Columns(
-        border_focus = "d3d3d3",
-        border_focus_stack = "8a9a5b",
-        border_normal = "000000",
-        border_normal_stack = "000000",
-        border_width = 5,
-        border_on_single = True,
-    ),
     layout.MonadTall(
         border_focus = "d3d3d3",
         border_focus_stack = "8a9a5b",
         border_normal = "000000",
         border_normal_stack = "000000",
-        border_width = 5,
+        border_width = 4,
         border_on_single = True,
         ratio = 0.7,
     ),
 ]
 
 widget_defaults = dict(
-    font="sans",
-    fontsize=18,
-    padding=9,
+    font="roboto medium",
+    #font="lato medium",
+    fontsize=17,
+    padding=14,
 )
+
 extension_defaults = widget_defaults.copy()
 
 screens = [
@@ -210,7 +222,7 @@ screens = [
                     padding = 2,
                 ),
                 widget.CurrentLayout(
-                    background = "d0d0d0",
+                    background = "aaaaaa",
                     foreground = "000000",
                     padding = 7,
                 ),
@@ -237,7 +249,7 @@ screens = [
                 ),
 
                 widget.Pomodoro(
-                    background = "d0d0d0",
+                    background = "aaaaaa",
                     foreground = "000000",
                     color_active = "0000ff",
                     color_break = "000000",
@@ -256,7 +268,7 @@ screens = [
                     format = "%H:%M  %a %Y-%m-%d",
                 ),
                 widget.Net(
-                    background = "d0d0d0",
+                    background = "aaaaaa",
                     foreground = "000000",
                     fmt = "nEt: {}",
                     format = '{down}↓↑{up}',
@@ -266,7 +278,7 @@ screens = [
                     foreground = "FFFFFF",
                 ),
                 widget.Memory(
-                    background = "d0d0d0",
+                    background = "aaaaaa",
                     foreground = "000000",
                     measure_mem = 'G',
                     fmt = "mEmoRY: {}",
@@ -281,7 +293,7 @@ screens = [
                     update_interval = 1,
                 ),
                 widget.PulseVolume(
-                    background = "d0d0d0",
+                    background = "aaaaaa",
                     foreground = "000000",
                     fmt = "pUlSE: {}",
                 ),
@@ -291,11 +303,11 @@ screens = [
                     background = "333333",
                     foreground = "FFFFFF",
                     fmt = "bRiGhTnEsS: {}",
-                    step = 10,
+                    step = 4,
                     max_chars = 4,
                 ),
                 widget.Battery(
-                    background = "d0d0d0",
+                    background = "aaaaaa",
                     foreground = "000000",
                     charge_char = "C",
                     discharge_char = "D",
@@ -307,8 +319,8 @@ screens = [
                     update_interval = 10,
                 ),
             ],
-            22,
-            border_width=[0, 0, 1, 0],  # Draw top and bottom borders
+            20,
+            border_width=[0, 0, 0, 0],  # Draw top and bottom borders
         ),
         #wallpaper = "~/Downloads/two.png",
         #wallpaper_mode = "fill",
